@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Pills from '../pills/Pills';
 import Upload from '../pills/Upload';
+import Pills from '../pills/Pills';
 
 export default () => {
   return (

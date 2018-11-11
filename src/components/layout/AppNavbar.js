@@ -161,7 +161,7 @@ class AppNavbar extends React.Component {
       >
         <MenuItem>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={2} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
@@ -169,7 +169,7 @@ class AppNavbar extends React.Component {
         </MenuItem>
         <MenuItem>
           <IconButton color="inherit">
-            <Badge badgeContent={11} color="secondary">
+            <Badge badgeContent={3} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -200,12 +200,12 @@ class AppNavbar extends React.Component {
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
+                <Badge badgeContent={2} color="secondary">
                   <MailIcon />
                 </Badge>
               </IconButton>
               <IconButton color="inherit">
-                <Badge badgeContent={17} color="secondary">
+                <Badge badgeContent={3} color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>

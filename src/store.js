@@ -8,6 +8,12 @@ import authReducer from './reducers/auth';
 
 const firebaseConfig = {
   // firebase api config
+  apiKey: 'AIzaSyB5fQ_274QvBR_d0P--QCCW_E2T1ERxjAU',
+  authDomain: 'mypill-be1b6.firebaseapp.com',
+  databaseURL: 'https://mypill-be1b6.firebaseio.com',
+  projectId: 'mypill-be1b6',
+  storageBucket: 'mypill-be1b6.appspot.com',
+  messagingSenderId: '68136064138'
 };
 
 // initialize firebase & firestore + settings

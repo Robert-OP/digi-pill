@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+// import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import firebase from 'firebase/app';
 import * as tf from '@tensorflow/tfjs';
 import { IMAGENET_CLASSES } from './imagenet_classes';
 
@@ -34,7 +38,7 @@ class Upload extends Component {
     // console.log(tensor);
 
     const predictions = await model.predict(tensor).data();
-    console.log(predictions);
+    // console.log(predictions);
     let results = Array.from(predictions)
       .map(function(p, i) {
         return {
@@ -55,11 +59,43 @@ class Upload extends Component {
     var ul = document.getElementById('predict-list');
     ul.innerHTML = '';
     results.forEach(function(p) {
-      console.log(p.className + ' <--- ' + p.probability.toFixed(3));
+      // console.log(p.className + ' <--- ' + p.probability.toFixed(3));
       var li = document.createElement('LI');
       li.innerHTML = p.className + ' <--- ' + p.probability.toFixed(3);
       ul.appendChild(li);
     });
+
+    // const response = fetch(
+    //   'https://maps.googleapis.com/maps/api/js?key=AIzaSyB3AO1HxgPhwBkeh66obKnU6wnTLODthx'
+    // )
+    //   .then(function(response) {
+    //     if (!response.ok) {
+    //       throw Error(response.statusText);
+    //     }
+    //     // Read the response as json.
+    //     console.log(response.json());
+
+    //     return response.json();
+    //   })
+    //   .then(function(responseAsJson) {
+    //     // Do stuff with the JSON
+    //     console.log(responseAsJson);
+    //   })
+    //   .catch(function(error) {
+    //     console.log('Looks like there was a problem: \n', error);
+    //   });
+    // console.log(response);
+
+    let newSample = {
+      date: new Date(),
+      location: new firebase.firestore.GeoPoint(57.0208, 9.8823),
+      outcome: results[0].className,
+      results: results
+    };
+
+    const { firestore } = this.props;
+    const res = await firestore.add({ collection: 'pills' }, newSample);
+    console.log(res);
   }
 
   preprocessImage(image) {
@@ -128,4 +164,4 @@ class Upload extends Component {
   }
 }
 
-export default Upload;
+export default compose(firestoreConnect())(Upload);
