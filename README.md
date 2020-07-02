@@ -1,4 +1,4 @@
-# DevFest Aalborg Hackathon 2018
+# DevFest Google Hackathon
 
 ## Digi Pill Concept
 
